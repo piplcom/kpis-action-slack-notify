@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-//goland:noinspection SpellCheckingInspection
+//goland:noinspection SpellCheckingInspection,GoUnusedConst
 const (
 	EnvSlackWebhook   = "SLACK_WEBHOOK"
 	EnvSlackIcon      = "SLACK_ICON"
@@ -83,7 +83,7 @@ func main() {
 		mandatoryFields := []Field{
 			{
 				Title: "Actions URL",
-				Value: "https://github.com/" + os.Getenv("GITHUB_REPOSITORY") + "/runs/" + os.Getenv("GITHUB_RUN_ID"),
+				Value: "https://github.com/" + os.Getenv("GITHUB_REPOSITORY") + "/runs/" + os.Getenv("GITHUB_RUN_NUMBER"),
 				Short: false,
 			},
 			{
