@@ -6,8 +6,9 @@ LABEL "com.github.actions.name"="Slack Notify"
 LABEL "com.github.actions.description"="This action will send notification to Slack"
 
 
-WORKDIR ${GOPATH}/src/github.com/rtcamp/action-slack-notify
-COPY main.go ${GOPATH}/src/github.com/rtcamp/action-slack-notify
+WORKDIR ${GOPATH}/src/github.com/pipl/kpis-action-slack-notify
+COPY main.go ${GOPATH}/src/github.com/pipl/kpis-action-slack-notify
+COPY go.mod ${GOPATH}/src/github.com/pipl/kpis-action-slack-notify
 
 ENV CGO_ENABLED 0
 ENV GOOS linux

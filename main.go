@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-//goland:noinspection SpellCheckingInspection
+//goland:noinspection SpellCheckingInspection,GoUnusedConst
 const (
 	EnvSlackWebhook   = "SLACK_WEBHOOK"
 	EnvSlackIcon      = "SLACK_ICON"
@@ -74,7 +74,7 @@ func main() {
 		mainFields := []Field{
 			{
 				Title: os.Getenv(EnvSlackTitle),
-				Value: envOr(EnvSlackMessage, "EOM"),
+				Value: os.Getenv(EnvSlackMessage),
 				Short: false,
 			},
 		}
@@ -83,12 +83,7 @@ func main() {
 		mandatoryFields := []Field{
 			{
 				Title: "Actions URL",
-				Value: "https://github.com/" + os.Getenv("GITHUB_REPOSITORY") + "/runs/" + os.Getenv("GITHUB_RUN_ID"),
-				Short: false,
-			},
-			{
-				Title: "PSE IP",
-				Value: os.Getenv(EnvPSEIP),
+				Value: os.Getenv("GITHUB_SERVER_URL") + "/" + os.Getenv("GITHUB_REPOSITORY") + "/actions/runs/" + os.Getenv("GITHUB_RUN_ID"),
 				Short: false,
 			},
 			{
@@ -98,7 +93,7 @@ func main() {
 			},
 			{
 				Title: os.Getenv(EnvSlackTitle),
-				Value: envOr(EnvSlackMessage, "EOM"),
+				Value: os.Getenv(EnvSlackMessage),
 				Short: false,
 			},
 		}
@@ -118,6 +113,15 @@ func main() {
 				{
 					Title: "PSE URL",
 					Value: os.Getenv(EnvPSEUrl),
+					Short: false,
+				},
+			}, fields...)
+		}
+		if os.Getenv(EnvPSEIP) != "" {
+			fields = append([]Field{
+				{
+					Title: "PSE IP",
+					Value: os.Getenv(EnvPSEIP),
 					Short: false,
 				},
 			}, fields...)
