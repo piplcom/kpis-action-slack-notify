@@ -74,7 +74,7 @@ func main() {
 		mainFields := []Field{
 			{
 				Title: os.Getenv(EnvSlackTitle),
-				Value: envOr(EnvSlackMessage, "EOM"),
+				Value: os.Getenv(EnvSlackMessage),
 				Short: false,
 			},
 		}
@@ -93,7 +93,7 @@ func main() {
 			},
 			{
 				Title: os.Getenv(EnvSlackTitle),
-				Value: envOr(EnvSlackMessage, "EOM"),
+				Value: os.Getenv(EnvSlackMessage),
 				Short: false,
 			},
 		}
