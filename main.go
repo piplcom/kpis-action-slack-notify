@@ -83,7 +83,7 @@ func main() {
 		mandatoryFields := []Field{
 			{
 				Title: "Actions URL",
-				Value: "https://github.com/" + os.Getenv("GITHUB_REPOSITORY") + "/pull/" + os.Getenv("PULL_REQUEST_NUMBER") + "/checks",
+				Value: "https://github.com/" + os.Getenv("GITHUB_REPOSITORY") + "/runs/" + os.Getenv("GITHUB_RUN_ID"),
 				Short: false,
 			},
 			{
