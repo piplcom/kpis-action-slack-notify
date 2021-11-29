@@ -87,11 +87,6 @@ func main() {
 				Short: false,
 			},
 			{
-				Title: "PSE URL",
-				Value: os.Getenv(EnvPSEUrl),
-				Short: false,
-			},
-			{
 				Title: "PSE IP",
 				Value: os.Getenv(EnvPSEIP),
 				Short: false,
@@ -108,11 +103,21 @@ func main() {
 			},
 		}
 		fields = append(mandatoryFields, fields...)
+
 		if os.Getenv(EnvPullRequestURL) != "" {
 			fields = append([]Field{
 				{
 					Title: "Pull Request URL",
 					Value: os.Getenv(EnvPullRequestURL),
+					Short: false,
+				},
+			}, fields...)
+		}
+		if os.Getenv(EnvPSEUrl) != "" {
+			fields = append([]Field{
+				{
+					Title: "PSE URL",
+					Value: os.Getenv(EnvPSEUrl),
 					Short: false,
 				},
 			}, fields...)
