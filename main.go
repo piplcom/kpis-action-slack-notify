@@ -105,11 +105,6 @@ func main() {
 				Short: false,
 			},
 			{
-				Title: "PSE Version",
-				Value: os.Getenv(EnvPSEVersion),
-				Short: false,
-			},
-			{
 				Title: os.Getenv(EnvSlackTitle),
 				Value: os.Getenv(EnvSlackMessage),
 				Short: false,
