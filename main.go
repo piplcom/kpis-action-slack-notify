@@ -158,12 +158,7 @@ func main() {
 
 	//goland:noinspection ALL
 	githubActor := "http://github.com/" + os.Getenv(EnvGithubActor)
-	accessory := &BlockAccessory{
-		Type: BlockImageAccessory,
-		//ImageUrl: githubActor + ".png?size=32",
-		ImageUrl: "https://api.slack.com/img/blocks/bkb_template_images/tripAgent_1.png",
-		AltText:  envOr(EnvGithubActor, ""),
-	}
+	githubActorOrDefault := envOr(EnvGithubActor, "")
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
@@ -184,6 +179,11 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*Actions URL:*\n" + actionUrl,
+			},
+			Accessory: &BlockAccessory{
+				Type:     BlockImageAccessory,
+				ImageUrl: githubActor + ".png?size=32",
+				AltText:  githubActorOrDefault,
 			},
 		},
 		{
@@ -214,14 +214,6 @@ func main() {
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
-		{
-			Type: BlockSectionTypeSection,
-			Text: BlockText{
-				Type: TextTypePlainMarkdown,
-				Text: githubActor,
-			},
-			Accessory: accessory,
-		},
 	}
 
 	//goland:noinspection HttpUrlsUsage
@@ -231,17 +223,6 @@ func main() {
 		IconEmoji: os.Getenv(EnvSlackIconEmoji),
 		Channel:   os.Getenv(EnvSlackChannel),
 		Blocks:    blocks,
-		Attachments: []Attachment{
-			{
-				Fallback:   envOr(EnvSlackMessage, "GITHUB_ACTION="+os.Getenv("GITHUB_ACTION")+" \n GITHUB_ACTOR="+os.Getenv("GITHUB_ACTOR")+" \n GITHUB_EVENT_NAME="+os.Getenv("GITHUB_EVENT_NAME")+" \n GITHUB_REF="+os.Getenv("GITHUB_REF")+" \n GITHUB_REPOSITORY="+os.Getenv("GITHUB_REPOSITORY")+" \n GITHUB_WORKFLOW="+os.Getenv("GITHUB_WORKFLOW")),
-				Color:      envOr(EnvSlackColor, "good"),
-				AuthorName: envOr(EnvGithubActor, ""),
-				AuthorLink: "http://github.com/" + os.Getenv(EnvGithubActor),
-				AuthorIcon: "http://github.com/" + os.Getenv(EnvGithubActor) + ".png?size=32",
-				Footer:     "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
-				Fields:     fields,
-			},
-		},
 	}
 
 	if err := send(endpoint, msg); err != nil {
