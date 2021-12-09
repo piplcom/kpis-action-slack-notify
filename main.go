@@ -82,6 +82,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	//actionUrl := os.Getenv("GITHUB_SERVER_URL") + "/" + os.Getenv("GITHUB_REPOSITORY") + "/actions/runs/" + os.Getenv("GITHUB_RUN_ID") + "/attempts/" + os.Getenv("GITHUB_RUN_ATTEMPT")
+	actionUrl := fmt.Sprintf("%s/%s/actions/runs/%s/attempts/%s",
+		os.Getenv("GITHUB_SERVER_URL"),
+		os.Getenv("GITHUB_REPOSITORY"),
+		os.Getenv("GITHUB_RUN_ID"),
+		os.Getenv("GITHUB_RUN_ATTEMPT"))
 	minimal := os.Getenv(EnvMinimal)
 	var fields []Field
 	if minimal == "true" {
@@ -97,7 +103,7 @@ func main() {
 		mandatoryFields := []Field{
 			{
 				Title: "Actions URL",
-				Value: os.Getenv("GITHUB_SERVER_URL") + "/" + os.Getenv("GITHUB_REPOSITORY") + "/actions/runs/" + os.Getenv("GITHUB_RUN_ID") + "/attempts/" + os.Getenv("GITHUB_RUN_ATTEMPT"),
+				Value: actionUrl,
 				Short: false,
 			},
 			{
@@ -166,6 +172,13 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: fmt.Sprintf("Branch %s KPIs tests launched", os.Getenv("GITHUB_REF_NAME")),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*Actions URL:*\n" + actionUrl,
 			},
 		},
 		{
