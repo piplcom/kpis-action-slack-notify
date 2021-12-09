@@ -50,9 +50,9 @@ type BlockAccessory struct {
 }
 
 type Block struct {
-	Type      string         `json:"type"`
-	Text      BlockText      `json:"text"`
-	Accessory BlockAccessory `json:"accessory,omitempty"`
+	Type      string          `json:"type"`
+	Text      BlockText       `json:"text"`
+	Accessory *BlockAccessory `json:"accessory,omitempty"`
 }
 
 type Webhook struct {
