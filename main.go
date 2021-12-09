@@ -27,7 +27,21 @@ const (
 	EnvPSEIP          = "PSE_IP"
 	EnvPullRequestURL = "PULL_REQUEST_URL"
 	EnvPSEVersion     = "PSE_VERSION"
+
+	BlockSectionTypeHeader = "header"
+
+	TextTypePlainText = "plain_text"
 )
+
+type BlockText struct {
+	Type string `json:"type"`
+	Text string `json:"text"`
+}
+
+type Block struct {
+	Type string    `json:"type"`
+	Text BlockText `json:"text,omitempty"`
+}
 
 type Webhook struct {
 	Text        string       `json:"text,omitempty"`
@@ -37,6 +51,7 @@ type Webhook struct {
 	Channel     string       `json:"channel,omitempty"`
 	UnfurlLinks bool         `json:"unfurl_links"`
 	Attachments []Attachment `json:"attachments,omitempty"`
+	Blocks      []Block      `json:"blocks,omitempty"`
 }
 
 type Attachment struct {
@@ -144,6 +159,15 @@ func main() {
 		}
 		fields = append(newFields, fields...)
 	}
+	var blocks = []Block{
+		{
+			Type: BlockSectionTypeHeader,
+			Text: BlockText{
+				Type: TextTypePlainText,
+				Text: "KPIs tests started.Branch KPIs tests launched",
+			},
+		},
+	}
 
 	//goland:noinspection HttpUrlsUsage
 	msg := Webhook{
@@ -152,6 +176,7 @@ func main() {
 		IconEmoji: os.Getenv(EnvSlackIconEmoji),
 		Channel:   os.Getenv(EnvSlackChannel),
 		Text:      "Sigal test",
+		Blocks:    blocks,
 		Attachments: []Attachment{
 			{
 				Fallback:   envOr(EnvSlackMessage, "GITHUB_ACTION="+os.Getenv("GITHUB_ACTION")+" \n GITHUB_ACTOR="+os.Getenv("GITHUB_ACTOR")+" \n GITHUB_EVENT_NAME="+os.Getenv("GITHUB_EVENT_NAME")+" \n GITHUB_REF="+os.Getenv("GITHUB_REF")+" \n GITHUB_REPOSITORY="+os.Getenv("GITHUB_REPOSITORY")+" \n GITHUB_WORKFLOW="+os.Getenv("GITHUB_WORKFLOW")),
