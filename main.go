@@ -216,8 +216,8 @@ func main() {
 			},
 			Accessory: BlockAccessory{
 				Type:     BlockImageAccessory,
-				ImageUrl: githubActor,
-				AltText:  githubActor + ".png?size=32",
+				ImageUrl: githubActor + ".png?size=32",
+				AltText:  githubActor,
 			},
 		},
 	}
