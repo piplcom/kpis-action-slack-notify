@@ -29,6 +29,7 @@ const (
 	EnvPSEVersion     = "PSE_VERSION"
 	EnvUuid           = "UUID"
 	EnvBiLink         = "BI_LINK"
+	EnvBqLink         = "BQ_LINK"
 
 	BlockSectionTypeHeader  = "header"
 	BlockSectionTypeSection = "section"
@@ -186,6 +187,13 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*BI (Metabase):*\n" + os.Getenv(EnvBiLink),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*BigQuery:*\n" + os.Getenv(EnvBiLink),
 			},
 		},
 	}
