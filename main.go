@@ -162,7 +162,7 @@ func main() {
 			Type: BlockSectionTypeHeader,
 			Text: BlockText{
 				Type: TextTypePlainText,
-				Text: "KPIs tests started",
+				Text: os.Getenv(EnvSlackTitle),
 			},
 		},
 		{
