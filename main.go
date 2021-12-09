@@ -27,10 +27,13 @@ const (
 	EnvPSEIP          = "PSE_IP"
 	EnvPullRequestURL = "PULL_REQUEST_URL"
 	EnvPSEVersion     = "PSE_VERSION"
+	EnvUuid           = "UUID"
 
-	BlockSectionTypeHeader = "header"
+	BlockSectionTypeHeader  = "header"
+	BlockSectionTypeSection = "section"
 
-	TextTypePlainText = "plain_text"
+	TextTypePlainText     = "plain_text"
+	TextTypePlainMarkdown = "mrkdwn"
 )
 
 type BlockText struct {
@@ -40,7 +43,7 @@ type BlockText struct {
 
 type Block struct {
 	Type string    `json:"type"`
-	Text BlockText `json:"text,omitempty"`
+	Text BlockText `json:"text"`
 }
 
 type Webhook struct {
@@ -167,6 +170,13 @@ func main() {
 				Text: "KPIs tests started.Branch KPIs tests launched",
 			},
 		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "Run UUID:\n" + os.Getenv(EnvUuid),
+			},
+		},
 	}
 
 	//goland:noinspection HttpUrlsUsage
@@ -175,7 +185,6 @@ func main() {
 		IconURL:   os.Getenv(EnvSlackIcon),
 		IconEmoji: os.Getenv(EnvSlackIconEmoji),
 		Channel:   os.Getenv(EnvSlackChannel),
-		Text:      "Sigal test",
 		Blocks:    blocks,
 		Attachments: []Attachment{
 			{
