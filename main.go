@@ -207,18 +207,18 @@ func main() {
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
-		{
-			Type: BlockSectionTypeSection,
-			Text: BlockText{
-				Type: TextTypePlainMarkdown,
-				Text: githubActor,
-			},
-			Accessory: BlockAccessory{
-				Type:     BlockImageAccessory,
-				ImageUrl: githubActor,
-				AltText:  githubActor + ".png?size=32",
-			},
-		},
+		//{
+		//	Type: BlockSectionTypeSection,
+		//	Text: BlockText{
+		//		Type: TextTypePlainMarkdown,
+		//		Text: githubActor,
+		//	},
+		//	Accessory: BlockAccessory{
+		//		Type:     BlockImageAccessory,
+		//		ImageUrl: githubActor,
+		//		AltText:  githubActor + ".png?size=32",
+		//	},
+		//},
 	}
 
 	//goland:noinspection HttpUrlsUsage
