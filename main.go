@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -255,20 +257,19 @@ func envOr(name, def string) string {
 }
 
 func send(endpoint string, msg Webhook) error {
-	enc, _ := json.Marshal(msg)
-	return fmt.Errorf("encoding %s", enc)
-	//if err != nil {
-	//	return err
-	//}
-	//b := bytes.NewBuffer(enc)
-	//res, err := http.Post(endpoint, "application/json", b)
-	//if err != nil {
-	//	return err
-	//}
-	//
-	//if res.StatusCode >= 299 {
-	//	return fmt.Errorf("Error on message: %s\n", res.Status)
-	//}
-	//fmt.Println(res.Status)
-	//return nil
+	enc, err := json.Marshal(msg)
+	if err != nil {
+		return err
+	}
+	b := bytes.NewBuffer(enc)
+	res, err := http.Post(endpoint, "application/json", b)
+	if err != nil {
+		return err
+	}
+
+	if res.StatusCode >= 299 {
+		return fmt.Errorf("Error on message: %s\n", res.Status)
+	}
+	fmt.Println(res.Status)
+	return nil
 }
