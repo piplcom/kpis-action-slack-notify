@@ -170,7 +170,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
-				Text: fmt.Sprintf("Branch %s KPIs tests launched", os.Getenv("GITHUB_HEAD_REF")),
+				Text: fmt.Sprintf("Branch %s KPIs tests launched", os.Getenv("GITHUB_REF")),
 			},
 		},
 		{
