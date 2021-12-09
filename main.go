@@ -218,13 +218,13 @@ func main() {
 		{
 			Type: BlockSectionTypeDivider,
 		},
-		{
-			Type: BlockSectionTypeSection,
-			Text: BlockText{
-				Type: TextTypePlainMarkdown,
-				Text: "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
-			},
-		},
+		//{
+		//	Type: BlockSectionTypeSection,
+		//	Text: BlockText{
+		//		Type: TextTypePlainMarkdown,
+		//		Text: "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
+		//	},
+		//},
 	}
 
 	//goland:noinspection HttpUrlsUsage
