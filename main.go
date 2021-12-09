@@ -146,6 +146,9 @@ func main() {
 		}
 		fields = append(newFields, fields...)
 	}
+
+	//goland:noinspection ALL
+	githubActor := "http://github.com/" + os.Getenv(EnvGithubActor)
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
@@ -194,6 +197,13 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: githubActor,
 			},
 		},
 	}
