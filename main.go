@@ -36,8 +36,6 @@ const (
 
 	TextTypePlainText     = "plain_text"
 	TextTypePlainMarkdown = "mrkdwn"
-
-	BlockImageAccessory = "image"
 )
 
 type BlockText struct {
@@ -45,16 +43,9 @@ type BlockText struct {
 	Text string `json:"text"`
 }
 
-type BlockAccessory struct {
-	Type     string `json:"type"`
-	ImageUrl string `json:"image_url"`
-	AltText  string `json:"alt_text"`
-}
-
 type Block struct {
-	Type      string         `json:"type"`
-	Text      BlockText      `json:"text"`
-	Accessory BlockAccessory `json:"accessory,omitempty"`
+	Type string    `json:"type"`
+	Text BlockText `json:"text"`
 }
 
 type Webhook struct {
@@ -155,8 +146,6 @@ func main() {
 		}
 		fields = append(newFields, fields...)
 	}
-	//goland:noinspection ALL
-	//githubActor := "http://github.com/" + os.Getenv(EnvGithubActor)
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
@@ -200,25 +189,13 @@ func main() {
 				Text: "*BI (Metabase):*\n" + os.Getenv(EnvBiLink),
 			},
 		},
-		//{
-		//	Type: BlockSectionTypeSection,
-		//	Text: BlockText{
-		//		Type: TextTypePlainMarkdown,
-		//		Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
-		//	},
-		//},
-		//{
-		//	Type: BlockSectionTypeSection,
-		//	Text: BlockText{
-		//		Type: TextTypePlainMarkdown,
-		//		Text: githubActor,
-		//	},
-		//	Accessory: BlockAccessory{
-		//		Type:     BlockImageAccessory,
-		//		ImageUrl: githubActor,
-		//		AltText:  githubActor + ".png?size=32",
-		//	},
-		//},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
+			},
+		},
 	}
 
 	//goland:noinspection HttpUrlsUsage
@@ -228,16 +205,17 @@ func main() {
 		IconEmoji: os.Getenv(EnvSlackIconEmoji),
 		Channel:   os.Getenv(EnvSlackChannel),
 		Blocks:    blocks,
-		//Attachments: []Attachment{
-		//	{
-		//		Fallback:   envOr(EnvSlackMessage, "GITHUB_ACTION="+os.Getenv("GITHUB_ACTION")+" \n GITHUB_ACTOR="+os.Getenv("GITHUB_ACTOR")+" \n GITHUB_EVENT_NAME="+os.Getenv("GITHUB_EVENT_NAME")+" \n GITHUB_REF="+os.Getenv("GITHUB_REF")+" \n GITHUB_REPOSITORY="+os.Getenv("GITHUB_REPOSITORY")+" \n GITHUB_WORKFLOW="+os.Getenv("GITHUB_WORKFLOW")),
-		//		Color:      envOr(EnvSlackColor, "good"),
-		//		AuthorName: envOr(EnvGithubActor, ""),
-		//		AuthorLink: githubActor,
-		//		AuthorIcon: githubActor + ".png?size=32",
-		//		Footer:     "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
-		//	},
-		//},
+		Attachments: []Attachment{
+			{
+				Fallback:   envOr(EnvSlackMessage, "GITHUB_ACTION="+os.Getenv("GITHUB_ACTION")+" \n GITHUB_ACTOR="+os.Getenv("GITHUB_ACTOR")+" \n GITHUB_EVENT_NAME="+os.Getenv("GITHUB_EVENT_NAME")+" \n GITHUB_REF="+os.Getenv("GITHUB_REF")+" \n GITHUB_REPOSITORY="+os.Getenv("GITHUB_REPOSITORY")+" \n GITHUB_WORKFLOW="+os.Getenv("GITHUB_WORKFLOW")),
+				Color:      envOr(EnvSlackColor, "good"),
+				AuthorName: envOr(EnvGithubActor, ""),
+				AuthorLink: "http://github.com/" + os.Getenv(EnvGithubActor),
+				AuthorIcon: "http://github.com/" + os.Getenv(EnvGithubActor) + ".png?size=32",
+				Footer:     "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
+				Fields:     fields,
+			},
+		},
 	}
 
 	if err := send(endpoint, msg); err != nil {
