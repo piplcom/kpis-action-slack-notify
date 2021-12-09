@@ -54,7 +54,7 @@ type BlockAccessory struct {
 
 type Block struct {
 	Type      string          `json:"type"`
-	Text      BlockText       `json:"text"`
+	Text      BlockText       `json:"text,omitempty"`
 	Accessory *BlockAccessory `json:"accessory,omitempty"`
 }
 
