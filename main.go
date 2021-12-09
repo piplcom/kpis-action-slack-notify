@@ -33,6 +33,7 @@ const (
 
 	BlockSectionTypeHeader  = "header"
 	BlockSectionTypeSection = "section"
+	BlockSectionTypeDivider = "divider"
 
 	TextTypePlainText     = "plain_text"
 	TextTypePlainMarkdown = "mrkdwn"
@@ -213,6 +214,9 @@ func main() {
 				Type: TextTypePlainMarkdown,
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
+		},
+		{
+			Type: BlockSectionTypeDivider,
 		},
 		{
 			Type: BlockSectionTypeSection,
