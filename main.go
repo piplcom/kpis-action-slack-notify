@@ -28,6 +28,7 @@ const (
 	EnvPullRequestURL = "PULL_REQUEST_URL"
 	EnvPSEVersion     = "PSE_VERSION"
 	EnvUuid           = "UUID"
+	EnvBiLink         = "BI_LINK"
 
 	BlockSectionTypeHeader  = "header"
 	BlockSectionTypeSection = "section"
@@ -177,6 +178,13 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*PSE Version:*\n" + os.Getenv(EnvPSEVersion),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*BI (Metabase):*\n" + os.Getenv(EnvBiLink),
 			},
 		},
 	}
