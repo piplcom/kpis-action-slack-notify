@@ -151,6 +151,7 @@ func main() {
 		IconURL:   os.Getenv(EnvSlackIcon),
 		IconEmoji: os.Getenv(EnvSlackIconEmoji),
 		Channel:   os.Getenv(EnvSlackChannel),
+		Text:      "Sigal test",
 		Attachments: []Attachment{
 			{
 				Fallback:   envOr(EnvSlackMessage, "GITHUB_ACTION="+os.Getenv("GITHUB_ACTION")+" \n GITHUB_ACTOR="+os.Getenv("GITHUB_ACTOR")+" \n GITHUB_EVENT_NAME="+os.Getenv("GITHUB_EVENT_NAME")+" \n GITHUB_REF="+os.Getenv("GITHUB_REF")+" \n GITHUB_REPOSITORY="+os.Getenv("GITHUB_REPOSITORY")+" \n GITHUB_WORKFLOW="+os.Getenv("GITHUB_WORKFLOW")),
