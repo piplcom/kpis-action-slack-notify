@@ -82,7 +82,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	//actionUrl := os.Getenv("GITHUB_SERVER_URL") + "/" + os.Getenv("GITHUB_REPOSITORY") + "/actions/runs/" + os.Getenv("GITHUB_RUN_ID") + "/attempts/" + os.Getenv("GITHUB_RUN_ATTEMPT")
 	actionUrl := fmt.Sprintf("%s/%s/actions/runs/%s/attempts/%s",
 		os.Getenv("GITHUB_SERVER_URL"),
 		os.Getenv("GITHUB_REPOSITORY"),
@@ -100,19 +99,6 @@ func main() {
 		}
 		fields = append(mainFields, fields...)
 	} else {
-		mandatoryFields := []Field{
-			{
-				Title: "Actions URL",
-				Value: actionUrl,
-				Short: false,
-			},
-			{
-				Title: os.Getenv(EnvSlackTitle),
-				Value: os.Getenv(EnvSlackMessage),
-				Short: false,
-			},
-		}
-		fields = append(mandatoryFields, fields...)
 
 		if os.Getenv(EnvPullRequestURL) != "" {
 			fields = append([]Field{
@@ -171,7 +157,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
-				Text: fmt.Sprintf("Branch %s KPIs tests launched", os.Getenv("GITHUB_REF_NAME")),
+				Text: os.Getenv(EnvSlackMessage),
 			},
 		},
 		{
