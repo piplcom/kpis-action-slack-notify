@@ -204,7 +204,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
-				Text: "*BigQuery:*\n" + os.Getenv(EnvBiLink),
+				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
 		{
