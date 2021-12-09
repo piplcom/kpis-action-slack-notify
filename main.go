@@ -177,6 +177,13 @@ func main() {
 				Text: "*Run UUID:*\n" + os.Getenv(EnvUuid),
 			},
 		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*PSE Version:*\n" + os.Getenv(EnvPSEVersion),
+			},
+		},
 	}
 
 	//goland:noinspection HttpUrlsUsage
