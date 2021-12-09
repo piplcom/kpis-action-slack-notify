@@ -170,6 +170,13 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
+				Text: fmt.Sprintf("Branch %s KPIs tests launched", os.Getenv("GITHUB_HEAD_REF")),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
 				Text: "*Run UUID:*\n" + os.Getenv(EnvUuid),
 			},
 		},
