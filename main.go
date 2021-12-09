@@ -158,6 +158,12 @@ func main() {
 
 	//goland:noinspection ALL
 	githubActor := "http://github.com/" + os.Getenv(EnvGithubActor)
+	accessory := &BlockAccessory{
+		Type: BlockImageAccessory,
+		//ImageUrl: githubActor + ".png?size=32",
+		ImageUrl: "https://api.slack.com/img/blocks/bkb_template_images/tripAgent_1.png",
+		AltText:  envOr(EnvGithubActor, ""),
+	}
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
@@ -214,12 +220,7 @@ func main() {
 				Type: TextTypePlainMarkdown,
 				Text: githubActor,
 			},
-			//Accessory: BlockAccessory{
-			//	Type: BlockImageAccessory,
-			//	//ImageUrl: githubActor + ".png?size=32",
-			//	ImageUrl: "https://api.slack.com/img/blocks/bkb_template_images/tripAgent_1.png",
-			//	AltText:  envOr(EnvGithubActor, ""),
-			//},
+			Accessory: accessory,
 		},
 	}
 
