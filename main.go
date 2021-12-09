@@ -167,7 +167,7 @@ func main() {
 			Type: BlockSectionTypeHeader,
 			Text: BlockText{
 				Type: TextTypePlainText,
-				Text: "KPIs tests started.Branch KPIs tests launched",
+				Text: "KPIs tests started",
 			},
 		},
 		{
