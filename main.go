@@ -81,11 +81,6 @@ func main() {
 		_, _ = fmt.Fprintln(os.Stderr, "URL is required")
 		os.Exit(1)
 	}
-	text := os.Getenv(EnvSlackMessage)
-	if text == "" {
-		_, _ = fmt.Fprintln(os.Stderr, "Message is required")
-		os.Exit(1)
-	}
 
 	minimal := os.Getenv(EnvMinimal)
 	var fields []Field
