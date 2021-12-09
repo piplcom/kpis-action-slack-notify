@@ -36,6 +36,8 @@ const (
 
 	TextTypePlainText     = "plain_text"
 	TextTypePlainMarkdown = "mrkdwn"
+
+	BlockImageAccessory = "image"
 )
 
 type BlockText struct {
@@ -43,9 +45,16 @@ type BlockText struct {
 	Text string `json:"text"`
 }
 
+type BlockAccessory struct {
+	Type     string `json:"type"`
+	ImageUrl string `json:"image_url"`
+	AltText  string `json:"alt_text"`
+}
+
 type Block struct {
-	Type string    `json:"type"`
-	Text BlockText `json:"text"`
+	Type      string         `json:"type"`
+	Text      BlockText      `json:"text"`
+	Accessory BlockAccessory `json:"accessory,omitempty"`
 }
 
 type Webhook struct {
@@ -204,6 +213,11 @@ func main() {
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: githubActor,
+			},
+			Accessory: BlockAccessory{
+				Type:     BlockImageAccessory,
+				ImageUrl: githubActor,
+				AltText:  githubActor + ".png?size=32",
 			},
 		},
 	}
