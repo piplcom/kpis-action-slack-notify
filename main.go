@@ -215,9 +215,9 @@ func main() {
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
-		{
-			Type: BlockSectionTypeDivider,
-		},
+		//{
+		//	Type: BlockSectionTypeDivider,
+		//},
 		//{
 		//	Type: BlockSectionTypeSection,
 		//	Text: BlockText{
