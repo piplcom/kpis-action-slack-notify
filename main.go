@@ -214,6 +214,13 @@ func main() {
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "<https://github.com/rtCamp/github-actions-library|Powered By rtCamp's GitHub Actions Library>",
+			},
+		},
 	}
 
 	//goland:noinspection HttpUrlsUsage
