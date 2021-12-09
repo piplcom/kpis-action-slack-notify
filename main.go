@@ -54,7 +54,7 @@ type BlockAccessory struct {
 
 type Block struct {
 	Type      string          `json:"type"`
-	Text      BlockText       `json:"text,omitempty"`
+	Text      *BlockText      `json:"text,omitempty"`
 	Accessory *BlockAccessory `json:"accessory,omitempty"`
 }
 
@@ -163,21 +163,21 @@ func main() {
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainText,
 				Text: os.Getenv(EnvSlackTitle),
 			},
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: os.Getenv(EnvSlackMessage),
 			},
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*Actions URL:*\n" + actionUrl,
 			},
@@ -189,35 +189,35 @@ func main() {
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*Run UUID:*\n" + os.Getenv(EnvUuid),
 			},
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*PSE Version:*\n" + os.Getenv(EnvPSEVersion),
 			},
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*BI (Metabase):*\n" + os.Getenv(EnvBiLink),
 			},
 		},
 		{
 			Type: BlockSectionTypeSection,
-			Text: BlockText{
+			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
 			},
 		},
-		//{
-		//	Type: BlockSectionTypeDivider,
-		//},
+		{
+			Type: BlockSectionTypeDivider,
+		},
 		//{
 		//	Type: BlockSectionTypeSection,
 		//	Text: BlockText{
