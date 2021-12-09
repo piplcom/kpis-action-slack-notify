@@ -174,7 +174,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: BlockText{
 				Type: TextTypePlainMarkdown,
-				Text: "Run UUID:\n" + os.Getenv(EnvUuid),
+				Text: "*Run UUID:*\n" + os.Getenv(EnvUuid),
 			},
 		},
 	}
