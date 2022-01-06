@@ -180,7 +180,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: &BlockText{
 				Type: TextTypePlainText,
-				Text: envOr(EnvSlackDescription, ""),
+				Text: envOr(EnvSlackDescription, "KPIs test launched. Links to results below"),
 			},
 		},
 		{
@@ -262,6 +262,7 @@ func send(endpoint string, msg Webhook) error {
 	if err != nil {
 		return err
 	}
+	println("Sending %s to Slack", string(enc))
 	b := bytes.NewBuffer(enc)
 	res, err := http.Post(endpoint, "application/json", b)
 	if err != nil {
