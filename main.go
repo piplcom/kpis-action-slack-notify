@@ -10,26 +10,27 @@ import (
 
 //goland:noinspection SpellCheckingInspection,GoUnusedConst
 const (
-	EnvSlackWebhook   = "SLACK_WEBHOOK"
-	EnvSlackIcon      = "SLACK_ICON"
-	EnvSlackIconEmoji = "SLACK_ICON_EMOJI"
-	EnvSlackChannel   = "SLACK_CHANNEL"
-	EnvSlackTitle     = "SLACK_TITLE"
-	EnvSlackMessage   = "SLACK_MESSAGE"
-	EnvSlackColor     = "SLACK_COLOR"
-	EnvSlackUserName  = "SLACK_USERNAME"
-	EnvGithubActor    = "GITHUB_ACTOR"
-	EnvSiteName       = "SITE_NAME"
-	EnvHostName       = "HOST_NAME"
-	EnvDeployPath     = "DEPLOY_PATH"
-	EnvMinimal        = "MSG_MINIMAL"
-	EnvPSEUrl         = "PSE_URL"
-	EnvPSEIP          = "PSE_IP"
-	EnvPullRequestURL = "PULL_REQUEST_URL"
-	EnvPSEVersion     = "PSE_VERSION"
-	EnvUuid           = "UUID"
-	EnvBiLink         = "BI_LINK"
-	EnvBqLink         = "BQ_LINK"
+	EnvSlackWebhook     = "SLACK_WEBHOOK"
+	EnvSlackIcon        = "SLACK_ICON"
+	EnvSlackIconEmoji   = "SLACK_ICON_EMOJI"
+	EnvSlackChannel     = "SLACK_CHANNEL"
+	EnvSlackTitle       = "SLACK_TITLE"
+	EnvSlackMessage     = "SLACK_MESSAGE"
+	EnvSlackDescription = "SLACK_DESCRIPTION"
+	EnvSlackColor       = "SLACK_COLOR"
+	EnvSlackUserName    = "SLACK_USERNAME"
+	EnvGithubActor      = "GITHUB_ACTOR"
+	EnvSiteName         = "SITE_NAME"
+	EnvHostName         = "HOST_NAME"
+	EnvDeployPath       = "DEPLOY_PATH"
+	EnvMinimal          = "MSG_MINIMAL"
+	EnvPSEUrl           = "PSE_URL"
+	EnvPSEIP            = "PSE_IP"
+	EnvPullRequestURL   = "PULL_REQUEST_URL"
+	EnvPSEVersion       = "PSE_VERSION"
+	EnvUuid             = "UUID"
+	EnvBiLink           = "BI_LINK"
+	EnvBqLink           = "BQ_LINK"
 
 	BlockSectionTypeHeader  = "header"
 	BlockSectionTypeSection = "section"
@@ -173,6 +174,13 @@ func main() {
 			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: os.Getenv(EnvSlackMessage),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: &BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: os.Getenv(EnvSlackDescription),
 			},
 		},
 		{
