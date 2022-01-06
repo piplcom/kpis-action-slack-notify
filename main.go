@@ -179,7 +179,7 @@ func main() {
 		{
 			Type: BlockSectionTypeSection,
 			Text: &BlockText{
-				Type: TextTypePlainMarkdown,
+				Type: TextTypePlainText,
 				Text: envOr(EnvSlackDescription, ""),
 			},
 		},
