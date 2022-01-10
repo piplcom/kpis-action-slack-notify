@@ -28,6 +28,8 @@ const (
 	EnvPSEIP            = "PSE_IP"
 	EnvPullRequestURL   = "PULL_REQUEST_URL"
 	EnvPSEVersion       = "PSE_VERSION"
+	EnvPSEIndexData     = "PSE_INDEX_DATA"
+	EnvPSEMiscData      = "PSE_MISC_DATA"
 	EnvUuid             = "UUID"
 	EnvBiLink           = "BI_LINK"
 	EnvBqLink           = "BQ_LINK"
@@ -207,6 +209,20 @@ func main() {
 			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*PSE Version:*\n" + os.Getenv(EnvPSEVersion),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: &BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*Index data:*\n" + os.Getenv(EnvPSEIndexData),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: &BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*Misc data:*\n" + os.Getenv(EnvPSEMiscData),
 			},
 		},
 		{
