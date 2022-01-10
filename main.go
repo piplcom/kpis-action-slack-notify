@@ -30,6 +30,7 @@ const (
 	EnvPSEVersion       = "PSE_VERSION"
 	EnvPSEIndexData     = "PSE_INDEX_DATA"
 	EnvPSEMiscData      = "PSE_MISC_DATA"
+	EnvPSEDataSet       = "PSE_DATASET"
 	EnvUuid             = "UUID"
 	EnvBiLink           = "BI_LINK"
 	EnvBqLink           = "BQ_LINK"
@@ -209,6 +210,13 @@ func main() {
 			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*PSE Version:*\n" + os.Getenv(EnvPSEVersion),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: &BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*Dataset:*\n" + os.Getenv(EnvPSEDataSet),
 			},
 		},
 		{
