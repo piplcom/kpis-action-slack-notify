@@ -183,7 +183,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: &BlockText{
 				Type: TextTypePlainText,
-				Text: envOr(EnvSlackDescription, "Links to results below"),
+				Text: "*Description:*\n " + envOr(EnvSlackDescription, "Links to results below"),
 			},
 		},
 		{
