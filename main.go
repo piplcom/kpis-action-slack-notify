@@ -35,6 +35,8 @@ const (
 	EnvBiLink           = "BI_LINK"
 	EnvBqLink           = "BQ_LINK"
 
+	EnvTestTypes = "TEST_TYPES"
+
 	BlockSectionTypeHeader  = "header"
 	BlockSectionTypeSection = "section"
 	BlockSectionTypeDivider = "divider"
@@ -184,6 +186,13 @@ func main() {
 			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
 				Text: "*Description:*\n " + envOr(EnvSlackDescription, "Links to results below"),
+			},
+		},
+		{
+			Type: BlockSectionTypeSection,
+			Text: &BlockText{
+				Type: TextTypePlainMarkdown,
+				Text: "*Test types:*\n " + envOr(EnvTestTypes, "N/A"),
 			},
 		},
 		{
