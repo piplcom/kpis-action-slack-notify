@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 )
 
 //goland:noinspection SpellCheckingInspection,GoUnusedConst
@@ -166,6 +167,8 @@ func main() {
 	//goland:noinspection ALL
 	githubActor := "http://github.com/" + os.Getenv(EnvGithubActor)
 	githubActorOrDefault := envOr(EnvGithubActor, "")
+	bqBlock := createBqLinksBlock()
+	formattedBqLinksStr := bqBlock
 	var blocks = []Block{
 		{
 			Type: BlockSectionTypeHeader,
@@ -253,7 +256,7 @@ func main() {
 			Type: BlockSectionTypeSection,
 			Text: &BlockText{
 				Type: TextTypePlainMarkdown,
-				Text: "*BigQuery:*\n" + os.Getenv(EnvBqLink),
+				Text: formattedBqLinksStr,
 			},
 		},
 		{
@@ -281,6 +284,24 @@ func main() {
 		_, _ = fmt.Fprintf(os.Stderr, "Error sending message: %s\n", err)
 		os.Exit(2)
 	}
+}
+
+func createBqLinksBlock() string {
+	commaDelimitedBqLinks := os.Getenv(EnvBqLink)
+	bqLinksArr := strings.Split(commaDelimitedBqLinks, ",")
+	n := 0
+	for _, val := range bqLinksArr {
+		if len(val) > 0 {
+			bqLinksArr[n] = val
+			n++
+		}
+	}
+	bqLinksArr = bqLinksArr[:n]
+	bqBlock := ""
+	for i := 0; i < len(bqLinksArr); i = i + 2 {
+		bqBlock = fmt.Sprintf("%s*%s:*\n%s\n", bqBlock, bqLinksArr[i], bqLinksArr[i+1])
+	}
+	return bqBlock
 }
 
 func envOr(name, def string) string {
